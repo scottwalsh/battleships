@@ -1,0 +1,15 @@
+C:\Users\Scott Walsh\Desktop\Battleships\Battleships\Battleships\bin\Debug\Battleships.exe
+C:\Users\Scott Walsh\Desktop\Battleships\Battleships\Battleships\bin\Debug\Battleships.pdb
+C:\Users\Scott Walsh\Desktop\Battleships\Battleships\Battleships\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Scott Walsh\Desktop\Battleships\Battleships\Battleships\obj\x86\Debug\Battleships.exe
+C:\Users\Scott Walsh\Desktop\Battleships\Battleships\Battleships\obj\x86\Debug\Battleships.pdb
+C:\Users\Scott Walsh\Documents\My Dropbox\Computing\Projects\Battleships\Battleships\Battleships\obj\x86\Debug\Battleships.exe
+C:\Users\Scott Walsh\Documents\My Dropbox\Computing\Projects\Battleships\Battleships\Battleships\obj\x86\Debug\Battleships.pdb
+C:\Users\Scott Walsh\Documents\My Dropbox\Computing\Projects\Battleships\Battleships\Battleships\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Scott Walsh\Documents\My Dropbox\Computing\Projects\Battleships\Battleships\Battleships\bin\Debug\Battleships.exe
+C:\Users\Scott Walsh\Documents\My Dropbox\Computing\Projects\Battleships\Battleships\Battleships\bin\Debug\Battleships.pdb
+C:\Users\scottwalsh\Dropbox\dev\Battleships\Battleships\Battleships\obj\x86\Debug\Battleships.exe
+C:\Users\scottwalsh\Dropbox\dev\Battleships\Battleships\Battleships\obj\x86\Debug\Battleships.pdb
+C:\Users\scottwalsh\Dropbox\dev\Battleships\Battleships\Battleships\bin\Debug\Battleships.exe
+C:\Users\scottwalsh\Dropbox\dev\Battleships\Battleships\Battleships\bin\Debug\Battleships.pdb
+C:\Users\scottwalsh\Dropbox\dev\Battleships\Battleships\Battleships\obj\x86\Debug\ResolveAssemblyReference.cache
