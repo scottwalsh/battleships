@@ -8,19 +8,19 @@ namespace Battleships
     class Grid
     {
         // Initialize the grid
-        int xSize;
-        int ySize;
+        int width;
+        int height;
         List<Square> grid = new List<Square>();
 
         public Grid(int inXSize, int inYSize)
         {
-            xSize = inXSize;
-            ySize = inYSize;
+            width = inXSize;
+            height = inYSize;
 
             // Create the grid using a funky-for-loop-solution
-            for (int x = 0; x < xSize; x++)
+            for (int x = 0; x < width; x++)
             {
-                for (int y = 0; y < ySize; y++)
+                for (int y = 0; y < height; y++)
                 {
                     Square sq = new Square(x, y);
                     grid.Add(sq);
@@ -112,26 +112,26 @@ namespace Battleships
             return null;
         }
 
-        private bool SetSquare(Coordinate c, Square inSquare) // This isn't even being used?
-        {
-            Square foundSquare = null;
-            foreach (Square square in grid)
-            {
-                if (c == square.C)
-                {
-                    foundSquare = inSquare;
-                    return true;
-                }
-            }
+        //private bool SetSquare(Coordinate c, Square inSquare) // This isn't even being used?
+        //{
+        //    Square foundSquare = null;
+        //    foreach (Square square in grid)
+        //    {
+        //        if (c == square.C)
+        //        {
+        //            foundSquare = inSquare;
+        //            return true;
+        //        }
+        //    }
 
-            if (foundSquare == null)
-            {
-                return false;
-            }
+        //    if (foundSquare == null)
+        //    {
+        //        return false;
+        //    }
 
-            foundSquare = inSquare;
-            return true;
-        }
+        //    foundSquare = inSquare;
+        //    return true;
+        //}
 
         public bool MakeGuess(Coordinate c)
         {
@@ -151,19 +151,6 @@ namespace Battleships
                 
             }
             return true;
-        }
-
-        public int GetBombedSquaresCount() // TODO: Do we even need this method?
-        {
-            int count = 0;
-            foreach (Square sq in grid)
-            {
-                if (sq.Bombed)
-                {
-                    count++;
-                }
-            }
-            return count;
         }
 
         public int GetBombedShipsCount()
