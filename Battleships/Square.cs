@@ -22,7 +22,7 @@ namespace Battleships
             bombed = false;
         }
 
-        public Square(int x, int y)
+        public Square(int x, int y) // Might no longer be needed
         {
             C = new Coordinate(x, y);
             bombed = false;

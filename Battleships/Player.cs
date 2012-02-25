@@ -13,13 +13,13 @@ namespace Battleships
         readonly List<Ship> ships;
         public List<Ship> Ships { get; private set; }
 
-        readonly Grid gameGrid;
-        public Grid GameGrid { get; set; }
+        readonly Grid g;
+        public Grid G { get; set; }
 
         public Player(string name)
         {
             Name = name;
-            GameGrid = new Grid(8, 8);
+            G = new Grid(8, 8);
 
             //TODO: Ships cannot be larger than grid
             Ships = new List<Ship>();
@@ -35,14 +35,17 @@ namespace Battleships
             Ships.Add(aircraftcarrier);
         }
 
-        public int GetShipSquareCount() // Squares on grid filled by a ship
+
+
+        // End state
+        // For this to work all ships in the ships list must be placed on the grid
+        public bool HasLost()
         {
-            int count = 0;
-            foreach (Ship ship in ships)
+            if (G.GetBombedShipSquareCount() >= G.GetShipSquareCount())
             {
-                count += ship.Size;
+                return true;
             }
-            return count;
+            return false;
         }
     }
 }

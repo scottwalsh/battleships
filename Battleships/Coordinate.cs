@@ -18,5 +18,16 @@ namespace Battleships
             X = x;
             Y = y;
         }
+
+        // TODO: Could overload == operator
+        public bool Equals(Coordinate other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            return this.X == other.X && this.Y == other.Y;
+        }
     }
 }

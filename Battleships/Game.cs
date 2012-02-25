@@ -44,7 +44,6 @@ namespace Battleships
 
         public bool PositionShips()
         {
-            // Position ships
             foreach (Player player in Players)
             {
                 foreach (Ship ship in player.Ships)
@@ -74,7 +73,7 @@ namespace Battleships
                             // FAIL!
                             Console.WriteLine("Ship placement failed.");
                         }
-                        ship.Positioned = player.GameGrid.PositionShip(c, ship);
+                        ship.Positioned = player.G.PositionShip(c, ship);
                         Console.Clear();
                         if (!ship.Positioned)
                         {
@@ -88,8 +87,7 @@ namespace Battleships
 
         public bool TakeTurns()
         {
-            bool end = false;
-            while (!end) // FIXME: may not be the end of the game if more than two people are playing
+            while (players.Count() > 1)
             {
                 // Take turns in trying to hit the other persons ships
                 foreach (Player attackPlayer in Players)
@@ -121,7 +119,8 @@ namespace Battleships
 
                         //TODO: successful guess does not mean hit ship, it means you selected a valid location
                         //instead could return square so we can display details about it
-                        bool guess = defencePlayer.GameGrid.MakeGuess(c);
+                        //TODO: have another go after a successful hit?
+                        bool guess = defencePlayer.G.MakeGuess(c);
                         if (guess)
                         {
                             Console.WriteLine("BOOM! You hit an enemy ship.");
@@ -131,21 +130,16 @@ namespace Battleships
                             Console.WriteLine("You missed.");
                         }
 
-                        // End state
-                        // For this to work all ships in the ships list must be placed on the grid
-                        if (defencePlayer.GameGrid.GetBombedShipsCount() >= defencePlayer.GetShipSquareCount())
+                        if (defencePlayer.HasLost())
                         {
-                            // Someone has lost
+                            // Someone has lost, remove them from the game
                             Console.WriteLine(defencePlayer.Name + " has no ships left. They have walked the plank.");
-                            end = true;
-
-                            // A better end state which works for more players?
-                            //players.Remove(defencePlayer);
-                            //if (players.Count() < 2) {end = true;}
+                            players.Remove(defencePlayer);
                         }
                     }
                 }
             }
+            Console.WriteLine(players.First() + " has won the game.");
             return true;
         }
     }

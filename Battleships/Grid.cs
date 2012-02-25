@@ -104,7 +104,7 @@ namespace Battleships
         {
             foreach(Square square in grid)
             {
-                if (c == square.C)
+                if (c.Equals(square.C))
                 {
                     return square;
                 }
@@ -153,12 +153,25 @@ namespace Battleships
             return true;
         }
 
-        public int GetBombedShipsCount()
+        public int GetBombedShipSquareCount()
         {
             int count = 0;
             foreach (Square sq in grid)
             {
                 if (sq.Bombed && sq.Ship != null)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public int GetShipSquareCount() // Squares on the grid filled by a ship
+        {
+            int count = 0;
+            foreach (Square sq in grid)
+            {
+                if (sq.Ship != null)
                 {
                     count++;
                 }
