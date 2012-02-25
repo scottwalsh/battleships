@@ -17,6 +17,8 @@ namespace Battleships
         readonly Orientation o;
         public Orientation O { get; set; }
 
+        //TODO: Add list of coordinates
+
         readonly bool positioned;
         public bool Positioned { get; set; }
 

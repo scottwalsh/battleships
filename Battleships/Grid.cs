@@ -35,8 +35,8 @@ namespace Battleships
                 int shipSize = s.Size;
                 for (int i = 0; i < shipSize; i++)
                 {
-                    c.X += i;
-                    Square sq = GetSquare(c);
+                    Coordinate checkc = new Coordinate(c.X + i, c.Y);
+                    Square sq = GetSquare(checkc);
                     if (sq != null && sq.Ship == null)
                     {
                         // WOOP! Success
@@ -52,8 +52,8 @@ namespace Battleships
                 int shipSize = s.Size;
                 for (int i = 0; i < shipSize; i++)
                 {
-                    c.Y += i;
-                    Square sq = GetSquare(c);
+                    Coordinate checkc = new Coordinate(c.X, c.Y + i);
+                    Square sq = GetSquare(checkc);
                     if (sq != null && sq.Ship == null)
                     {
                         // WOOP! Success
@@ -76,8 +76,8 @@ namespace Battleships
                     int shipSize = s.Size;
                     for (int i = 0; i < shipSize; i++)
                     {
-                        c.X += i;
-                        Square sq = GetSquare(c);
+                        Coordinate checkc = new Coordinate(c.X + i, c.Y);
+                        Square sq = GetSquare(checkc);
                         sq.Ship = s;
                     }
                 }
@@ -86,8 +86,8 @@ namespace Battleships
                     int shipSize = s.Size;
                     for (int i = 0; i < shipSize; i++)
                     {
-                        c.Y += i;
-                        Square sq = GetSquare(c);
+                        Coordinate checkc = new Coordinate(c.X, c.Y);
+                        Square sq = GetSquare(checkc);
                         sq.Ship = s;
                     }
                 }

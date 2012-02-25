@@ -23,16 +23,16 @@ namespace Battleships
 
             //TODO: Ships cannot be larger than grid
             Ships = new List<Ship>();
-            Ship patrolboat = new Ship("Patrol Boat", 2);
-            Ship submarine = new Ship("Submarine", 3);
-            Ship destroyer = new Ship("Destroyer", 3);
-            Ship battleship = new Ship("Battleship", 4);
             Ship aircraftcarrier = new Ship("Aircraft Carrier", 5);
-            Ships.Add(patrolboat);
-            Ships.Add(submarine);
-            Ships.Add(destroyer);
-            Ships.Add(battleship);
+            Ship battleship = new Ship("Battleship", 4);
+            Ship destroyer = new Ship("Destroyer", 3);
+            Ship submarine = new Ship("Submarine", 3);
+            Ship patrolboat = new Ship("Patrol Boat", 2);
             Ships.Add(aircraftcarrier);
+            Ships.Add(battleship);
+            Ships.Add(destroyer);
+            Ships.Add(submarine);
+            Ships.Add(patrolboat);
         }
 
 

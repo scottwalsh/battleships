@@ -20,26 +20,69 @@ namespace Battleships
             Players = players;
         }
 
+        private int ReadNumber()
+        {
+            int? n = null;
+
+            while (n == null)
+            {
+                try
+                {
+                    string nString = Console.ReadLine();
+                    n = Int32.Parse(nString);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("You must enter a number.");
+                }
+            }
+            return (int)n;
+        }
+
         private Coordinate ReadCoordinates()
         {
-            try
+            Coordinate c = null;
+            while (c == null)
             {
-                Console.WriteLine("Enter x coordinate.");
-                string xString = Console.ReadLine();
-                int x = Int32.Parse(xString);
+                try
+                {
+                    Console.WriteLine("Enter x coordinate.");
+                    int x = ReadNumber();
+                    Console.WriteLine("Enter y coordinate.");
+                    int y = ReadNumber();
 
-                Console.WriteLine("Enter y coordinate.");
-                string yString = Console.ReadLine();
-                int y = Int32.Parse(yString);
-
-                Coordinate c = new Coordinate(x, y);
-                return c;
+                    c = new Coordinate(x, y);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("You must enter a number."); //TODO: You must enter a number.. on the grid.
+                }
             }
-            catch (FormatException)
+            return c;
+        }
+
+        private Ship.Orientation ReadOrientation()
+        {
+            Ship.Orientation? orientation = null;
+            while (orientation == null)
             {
-                Console.WriteLine("You must enter a number."); //TODO: You must enter a number.. on the grid.
-                return null;
+                Console.WriteLine("Enter orientation (vertical/horizontal).");
+                string orientationString = Console.ReadLine().ToLower();
+                if (orientationString == "v" || orientationString == "vertical")
+                {
+                    orientation = Ship.Orientation.Vertical;
+                }
+                else if (orientationString == "h" || orientationString == "horizontal")
+                {
+                    orientation = Ship.Orientation.Horizontal;
+                }
+                else
+                {
+                    // FAIL!
+                    Console.WriteLine("Enter a valid orientation.");
+                }
             }
+            return (Ship.Orientation)orientation;
         }
 
         public bool PositionShips()
@@ -52,27 +95,10 @@ namespace Battleships
                     {
                         Console.WriteLine(player.Name);
                         Console.WriteLine("Choose where to position your " + ship.Name.ToLower() + ".");
-
                         Coordinate c = ReadCoordinates();
+                        
+                        ship.O = ReadOrientation();
 
-                        // TODO: Move this to a ReadOrientation method,
-                        //     may be part of bigger problems relating to ship holding it's own orientation
-                        //     shouldn't this be held on the map?
-                        Console.WriteLine("Enter orientation (vertical/horizontal).");
-                        string orientationString = Console.ReadLine().ToLower();
-                        if (orientationString == "v" || orientationString == "vertical")
-                        {
-                            ship.O = Ship.Orientation.Vertical;
-                        }
-                        else if (orientationString == "h" || orientationString == "horizontal")
-                        {
-                            ship.O = Ship.Orientation.Horizontal;
-                        }
-                        else
-                        {
-                            // FAIL!
-                            Console.WriteLine("Ship placement failed.");
-                        }
                         ship.Positioned = player.G.PositionShip(c, ship);
                         Console.Clear();
                         if (!ship.Positioned)
