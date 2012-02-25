@@ -100,7 +100,7 @@ namespace Battleships
                         ship.O = ReadOrientation();
 
                         ship.Positioned = player.G.PositionShip(c, ship);
-                        Console.Clear();
+                        //Console.Clear();
                         if (!ship.Positioned)
                         {
                             Console.WriteLine("Failed to place " + ship.Name);
@@ -113,7 +113,7 @@ namespace Battleships
 
         public bool TakeTurns()
         {
-            while (players.Count() > 1)
+            while (Players.Count() > 1)
             {
                 // Take turns in trying to hit the other persons ships
                 foreach (Player attackPlayer in Players)
@@ -124,7 +124,7 @@ namespace Battleships
                         {
                             continue;
                         }
-                        Console.Clear();
+                        // Console.Clear();
                         Console.WriteLine(attackPlayer.Name);
                         Console.WriteLine("You are attacking " + defencePlayer.Name);
                         Console.WriteLine("Select your target");
@@ -165,7 +165,7 @@ namespace Battleships
                     }
                 }
             }
-            Console.WriteLine(players.First() + " has won the game.");
+            Console.WriteLine(Players.First() + " has won the game.");
             return true;
         }
     }
