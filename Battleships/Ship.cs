@@ -7,49 +7,24 @@ namespace Battleships
 {
     class Ship
     {
+        readonly string name;
+        public string Name { get; set; }
+
+        readonly int size;
+        public int Size { get; set; }
+
         public enum Orientation { Vertical, Horizontal };
+        readonly Orientation o;
+        public Orientation O { get; set; }
 
-        string name;
-        int size;
-        Orientation orientation;
-        bool positioned = false;
+        readonly bool positioned;
+        public bool Positioned { get; set; }
 
-        public Ship(string inName, int inSize)
+        public Ship(string name, int size)
         {
-            name = inName;
-            size = inSize;
-        }
-
-        public string GetName()
-        {
-            return name;
-        }
-
-        public int GetSize()
-        {
-            return size;
-        }
-
-        public Orientation GetOrientation()
-        {
-            return orientation;
-        }
-
-        public bool SetOrientation(Orientation inOrientation)
-        {
-            orientation = inOrientation;
-            return true;
-        }
-
-        public bool IsPositioned()
-        {
-            return positioned;
-        }
-
-        public bool SetAsPositioned()
-        {
-            positioned = true;
-            return true;
+            Name = name;
+            Size = size;
+            Positioned = false;
         }
     }
 }

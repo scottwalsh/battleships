@@ -30,13 +30,13 @@ namespace Battleships
 
         public bool CheckShipPosition(int x, int y, Ship s)
         {
-            if (s.GetOrientation() == Ship.Orientation.Horizontal)
+            if (s.O == Ship.Orientation.Horizontal)
             {
-                int shipSize = s.GetSize();
+                int shipSize = s.Size;
                 for (int i = 0; i < shipSize; i++)
                 {
                     Square sq = GetSquare(x + i, y);
-                    if (sq != null && !sq.ContainsShip())
+                    if (sq != null && sq.Ship == null)
                     {
                         // WOOP! Success
                     }
@@ -46,13 +46,13 @@ namespace Battleships
                     }
                 }
             }
-            else if (s.GetOrientation() == Ship.Orientation.Vertical)
+            else if (s.O == Ship.Orientation.Vertical)
             {
-                int shipSize = s.GetSize();
+                int shipSize = s.Size;
                 for (int i = 0; i < shipSize; i++)
                 {
                     Square sq = GetSquare(x, y + i);
-                    if (sq != null && !sq.ContainsShip())
+                    if (sq != null && sq.Ship == null)
                     {
                         // WOOP! Success
                     }
@@ -69,29 +69,28 @@ namespace Battleships
         {
             if (CheckShipPosition(x, y, s))
             {
-                if (s.GetOrientation() == Ship.Orientation.Horizontal)
+                if (s.O == Ship.Orientation.Horizontal)
                 {
-                    int shipSize = s.GetSize();
+                    int shipSize = s.Size;
                     for (int i = 0; i < shipSize; i++)
                     {
                         Square sq = GetSquare(x + i, y);
-                        sq.SetShip(s);
+                        sq.Ship = s;
                     }
                 }
-                else if (s.GetOrientation() == Ship.Orientation.Vertical)
+                else if (s.O == Ship.Orientation.Vertical)
                 {
-                    int shipSize = s.GetSize();
+                    int shipSize = s.Size;
                     for (int i = 0; i < shipSize; i++)
                     {
                         Square sq = GetSquare(x, y + i);
-                        sq.SetShip(s);
+                        sq.Ship = s;
                     }
                 }
                 return true;
             }
             else
             {
-                throw new Exception();
                 return false;
             }
             
@@ -101,7 +100,7 @@ namespace Battleships
         {
             foreach(Square square in grid)
             {
-                if ((x == square.GetX()) && (y == square.GetY()))
+                if ((x == square.C.X) && (y == square.C.Y))
                 {
                     return square;
                 }
@@ -114,7 +113,7 @@ namespace Battleships
             Square foundSquare = null;
             foreach (Square square in grid)
             {
-                if ((x == square.GetX()) && (y == square.GetY()))
+                if ((x == square.C.X) && (y == square.C.Y))
                 {
                     foundSquare = inSquare;
                     return true;
@@ -133,16 +132,16 @@ namespace Battleships
         public bool MakeGuess(int x, int y)
         {
             Square sq = GetSquare(x, y);
-            if (sq.IsBombed())
+            if (sq.Bombed)
             {
-                // Why you trying to bomb something twice, fool
+                // TODO: Why you trying to bomb something twice, fool
             }
             else
             {
-                sq.Bomb();
+                sq.Bombed = true;
             }
 
-            if (sq.ContainsShip())
+            if (sq.Ship != null)
             {
                 return true;
             }
@@ -152,12 +151,12 @@ namespace Battleships
             }
         }
 
-        public int GetBombedSquaresCount()
+        public int GetBombedSquaresCount() // TODO: Do we even need this method?
         {
             int count = 0;
             foreach (Square sq in grid)
             {
-                if (sq.IsBombed())
+                if (sq.Bombed)
                 {
                     count++;
                 }
@@ -170,7 +169,7 @@ namespace Battleships
             int count = 0;
             foreach (Square sq in grid)
             {
-                if (sq.IsBombed() && sq.ContainsShip())
+                if (sq.Bombed && sq.Ship != null)
                 {
                     count++;
                 }

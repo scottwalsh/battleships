@@ -7,47 +7,23 @@ namespace Battleships
 {
     class Square
     {
-        int x;
-        int y;
-        bool hasShip = false;
-        bool bombed = false;
-        Ship ship;
+        readonly Coordinate c;
+        public Coordinate C { get; set; }
 
-        public Square(int inX, int inY)
-        {
-            x = inX;
-            y = inY;
-        }
+        readonly bool hasShip;
+        public bool HasShip { get; set; }
 
-        public int GetX()
-        {
-            return x;
-        }
+        readonly bool bombed;
+        public bool Bombed { get; set; }
+        
+        readonly Ship ship;
+        public Ship Ship { get; set; }
 
-        public int GetY()
+        public Square(int x, int y)
         {
-            return y;
-        }
-
-        public void SetShip(Ship inShip)
-        {
-            hasShip = true;
-            ship = inShip;
-        }
-
-        public bool ContainsShip()
-        {
-            return hasShip;
-        }
-
-        public bool IsBombed()
-        {
-            return bombed;
-        }
-
-        public void Bomb()
-        {
-             bombed = true;
+            C = new Coordinate(x, y);
+            hasShip = false;
+            bombed = false;
         }
     }
 }
