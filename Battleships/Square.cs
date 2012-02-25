@@ -10,9 +10,6 @@ namespace Battleships
         readonly Coordinate c;
         public Coordinate C { get; set; }
 
-        readonly bool hasShip;
-        public bool HasShip { get; set; }
-
         readonly bool bombed;
         public bool Bombed { get; set; }
         
@@ -22,7 +19,6 @@ namespace Battleships
         public Square(int x, int y)
         {
             C = new Coordinate(x, y);
-            hasShip = false;
             bombed = false;
         }
     }

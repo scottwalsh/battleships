@@ -10,6 +10,7 @@ namespace Battleships
         static void Main(string[] args)
         {
             Game game = new Game();
+            Console.WriteLine("Welcome to battleships.");
 
             game.PositionShips();
             game.TakeTurns();
@@ -23,12 +24,12 @@ namespace Battleships
         //{
         //    foreach (Square square in player.GameGrid)
         //    {
-        //        if (square.Bombed && square.HasShip)
+        //        if (square.Bombed && square.Ship != null)
         //        {
         //            Console.Write("X");
         //            Console.BackgroundColor = ConsoleColor.Red;
         //        }
-        //        else if (square.HasShip)
+        //        else if (square.Ship != null)
         //        {
         //            Console.Write(" ");
         //            Console.BackgroundColor = ConsoleColor.DarkGray;

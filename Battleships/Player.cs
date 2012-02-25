@@ -22,7 +22,6 @@ namespace Battleships
             GameGrid = new Grid(8, 8);
 
             //TODO: Ships cannot be larger than grid
-
             Ships = new List<Ship>();
             Ship patrolboat = new Ship("Patrol Boat", 2);
             Ship submarine = new Ship("Submarine", 3);
