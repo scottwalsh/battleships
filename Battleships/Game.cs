@@ -74,7 +74,7 @@ namespace Battleships
                             // FAIL!
                             Console.WriteLine("Ship placement failed.");
                         }
-                        ship.Positioned = player.GameGrid.PositionShip(c.X, c.Y, ship);
+                        ship.Positioned = player.GameGrid.PositionShip(c, ship);
                         Console.Clear();
                         if (!ship.Positioned)
                         {
@@ -119,7 +119,9 @@ namespace Battleships
                             }
                         }
 
-                        bool guess = defencePlayer.GameGrid.MakeGuess(c.X, c.Y);
+                        //TODO: successful guess does not mean hit ship, it means you selected a valid location
+                        //instead could return square so we can display details about it
+                        bool guess = defencePlayer.GameGrid.MakeGuess(c);
                         if (guess)
                         {
                             Console.WriteLine("BOOM! You hit an enemy ship.");

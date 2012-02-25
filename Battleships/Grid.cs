@@ -28,14 +28,15 @@ namespace Battleships
             }
         }
 
-        public bool CheckShipPosition(int x, int y, Ship s)
+        public bool CheckShipPosition(Coordinate c, Ship s)
         {
             if (s.O == Ship.Orientation.Horizontal)
             {
                 int shipSize = s.Size;
                 for (int i = 0; i < shipSize; i++)
                 {
-                    Square sq = GetSquare(x + i, y);
+                    c.X += i;
+                    Square sq = GetSquare(c);
                     if (sq != null && sq.Ship == null)
                     {
                         // WOOP! Success
@@ -51,7 +52,8 @@ namespace Battleships
                 int shipSize = s.Size;
                 for (int i = 0; i < shipSize; i++)
                 {
-                    Square sq = GetSquare(x, y + i);
+                    c.Y += i;
+                    Square sq = GetSquare(c);
                     if (sq != null && sq.Ship == null)
                     {
                         // WOOP! Success
@@ -65,16 +67,17 @@ namespace Battleships
             return true;
         }
 
-        public bool PositionShip(int x, int y, Ship s)
+        public bool PositionShip(Coordinate c, Ship s)
         {
-            if (CheckShipPosition(x, y, s))
+            if (CheckShipPosition(c, s))
             {
                 if (s.O == Ship.Orientation.Horizontal)
                 {
                     int shipSize = s.Size;
                     for (int i = 0; i < shipSize; i++)
                     {
-                        Square sq = GetSquare(x + i, y);
+                        c.X += i;
+                        Square sq = GetSquare(c);
                         sq.Ship = s;
                     }
                 }
@@ -83,7 +86,8 @@ namespace Battleships
                     int shipSize = s.Size;
                     for (int i = 0; i < shipSize; i++)
                     {
-                        Square sq = GetSquare(x, y + i);
+                        c.Y += i;
+                        Square sq = GetSquare(c);
                         sq.Ship = s;
                     }
                 }
@@ -96,11 +100,11 @@ namespace Battleships
             
         }
 
-        private Square GetSquare(int x, int y)
+        private Square GetSquare(Coordinate c)
         {
             foreach(Square square in grid)
             {
-                if ((x == square.C.X) && (y == square.C.Y))
+                if (c == square.C)
                 {
                     return square;
                 }
@@ -108,12 +112,12 @@ namespace Battleships
             return null;
         }
 
-        private bool SetSquare(int x, int y, Square inSquare) // This isn't even being used?
+        private bool SetSquare(Coordinate c, Square inSquare) // This isn't even being used?
         {
             Square foundSquare = null;
             foreach (Square square in grid)
             {
-                if ((x == square.C.X) && (y == square.C.Y))
+                if (c == square.C)
                 {
                     foundSquare = inSquare;
                     return true;
@@ -129,12 +133,13 @@ namespace Battleships
             return true;
         }
 
-        public bool MakeGuess(int x, int y)
+        public bool MakeGuess(Coordinate c)
         {
-            Square sq = GetSquare(x, y);
+            Square sq = GetSquare(c);
             if (sq.Bombed)
             {
                 // TODO: Why you trying to bomb something twice, fool
+                return false;
             }
             else
             {
@@ -143,12 +148,9 @@ namespace Battleships
 
             if (sq.Ship != null)
             {
-                return true;
+                
             }
-            else
-            {
-                return false;
-            }
+            return true;
         }
 
         public int GetBombedSquaresCount() // TODO: Do we even need this method?

@@ -16,6 +16,12 @@ namespace Battleships
         readonly Ship ship;
         public Ship Ship { get; set; }
 
+        public Square(Coordinate c)
+        {
+            C = c;
+            bombed = false;
+        }
+
         public Square(int x, int y)
         {
             C = new Coordinate(x, y);
